@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hearai/core/core.dart';
 import 'package:hearai/features/sign_up/sign_up.dart';
+import 'package:go_router/go_router.dart';
 
+// 注册 - 登录
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -25,7 +27,10 @@ class _SignUpPageState extends State<SignUpPage> {
     try {
       await Future.delayed(const Duration(seconds: 1));
     } finally {
-      if (mounted) setState(() => _isGoogleLoading = false);
+      if (mounted) {
+        setState(() => _isGoogleLoading = false);
+        context.go(RoutePaths.initSettings);
+      }
     }
   }
 
@@ -34,7 +39,10 @@ class _SignUpPageState extends State<SignUpPage> {
     try {
       await Future.delayed(const Duration(seconds: 1));
     } finally {
-      if (mounted) setState(() => _isWechatLoading = false);
+      if (mounted) {
+        setState(() => _isWechatLoading = false);
+        context.go(RoutePaths.initSettings);
+      }
     }
   }
 

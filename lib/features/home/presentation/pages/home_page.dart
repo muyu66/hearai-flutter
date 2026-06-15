@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hearai/core/core.dart';
 import 'package:hearai/features/home/home.dart';
+import 'package:go_router/go_router.dart';
 
 // 主页
 class HomePage extends StatefulWidget {
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage> {
                   _displayBottomHint = false;
                 });
               },
+              physics: _OnlyNextPagePhysics(),
               scrollDirection: Axis.vertical,
               itemCount: 3,
               itemBuilder: (context, index) {
@@ -48,7 +50,9 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push(RoutePaths.setting);
+                    },
                     icon: const Icon(Icons.settings),
                   ),
                 ],
@@ -73,5 +77,25 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+}
+
+/// 只允许下一个页面滑动
+class _OnlyNextPagePhysics extends ScrollPhysics {
+  const _OnlyNextPagePhysics({super.parent});
+
+  @override
+  _OnlyNextPagePhysics applyTo(ScrollPhysics? ancestor) {
+    return _OnlyNextPagePhysics(parent: buildParent(ancestor));
+  }
+
+  @override
+  double applyBoundaryConditions(ScrollMetrics position, double value) {
+    // 禁止回滑
+    if (value < position.pixels) {
+      return value - position.pixels;
+    }
+
+    return super.applyBoundaryConditions(position, value);
   }
 }

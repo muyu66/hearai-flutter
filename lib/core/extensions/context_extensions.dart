@@ -12,8 +12,4 @@ extension BuildContextX on BuildContext {
   Size get mediaSize => MediaQuery.sizeOf(this);
   double get screenWidth => mediaSize.width;
   double get screenHeight => mediaSize.height;
-
-  // --- Navigation ---
-  NavigatorState get navigator => Navigator.of(this);
-  void pop<T>([T? result]) => navigator.pop(result);
 }

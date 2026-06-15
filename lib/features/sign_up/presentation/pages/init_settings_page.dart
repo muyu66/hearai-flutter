@@ -70,7 +70,7 @@ class _InitSettingsPageState extends State<InitSettingsPage> {
                   label: "让我们开始！",
                   onPressed: () {
                     HapticsManager.light();
-                    context.go(RoutePaths.home);
+                    context.push(RoutePaths.home);
                   },
                 ),
               ],

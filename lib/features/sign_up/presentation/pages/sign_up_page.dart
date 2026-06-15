@@ -29,7 +29,7 @@ class _SignUpPageState extends State<SignUpPage> {
     } finally {
       if (mounted) {
         setState(() => _isGoogleLoading = false);
-        context.go(RoutePaths.initSettings);
+        context.push(RoutePaths.initSettings);
       }
     }
   }
@@ -41,7 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
     } finally {
       if (mounted) {
         setState(() => _isWechatLoading = false);
-        context.go(RoutePaths.initSettings);
+        context.push(RoutePaths.initSettings);
       }
     }
   }

@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hearai/features/home/home.dart';
 import 'package:hearai/features/sign_up/sign_up.dart';
 import 'package:hearai/features/splash/splash.dart';
+import 'package:hearai/features/setting/setting.dart';
 
 import 'route_paths.dart';
 
@@ -27,6 +28,11 @@ final GoRouter appRouter = GoRouter(
       path: RoutePaths.initSettings,
       name: 'initSettings',
       builder: (context, state) => const InitSettingsPage(),
+    ),
+    GoRoute(
+      path: RoutePaths.setting,
+      name: 'setting',
+      builder: (context, state) => const SettingPage(),
     ),
   ],
 );

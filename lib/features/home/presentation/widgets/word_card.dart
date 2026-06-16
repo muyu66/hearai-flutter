@@ -9,7 +9,9 @@ enum WordState { thinking, answer, result }
 
 /// 单词卡
 class WordCard extends StatefulWidget {
-  const WordCard({super.key});
+  const WordCard({super.key, required this.word});
+
+  final WordDtoModel word;
 
   @override
   State<WordCard> createState() => _WordCardState();
@@ -47,7 +49,12 @@ class _WordCardState extends State<WordCard> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
-            children: [Text('Word', style: context.textTheme.headlineMedium)],
+            children: [
+              Text(
+                widget.word.question,
+                style: context.textTheme.headlineMedium,
+              ),
+            ],
           ),
         ),
         // 下半部分：状态内容 (60%)
@@ -86,15 +93,31 @@ class _WordCardState extends State<WordCard> {
                 Expanded(
                   child: AnswerCard(
                     onTap: () => setState(() => _state = WordState.result),
+                    answer: widget.word.answers[0],
                   ),
                 ),
-                Expanded(child: AnswerCard(onTap: () {})),
+                Expanded(
+                  child: AnswerCard(
+                    onTap: () => setState(() => _state = WordState.result),
+                    answer: widget.word.answers[1],
+                  ),
+                ),
               ],
             ),
             Row(
               children: [
-                Expanded(child: AnswerCard(onTap: () {})),
-                Expanded(child: AnswerCard(onTap: () {})),
+                Expanded(
+                  child: AnswerCard(
+                    onTap: () => setState(() => _state = WordState.result),
+                    answer: widget.word.answers[2],
+                  ),
+                ),
+                Expanded(
+                  child: AnswerCard(
+                    onTap: () => setState(() => _state = WordState.result),
+                    answer: "我不知道",
+                  ),
+                ),
               ],
             ),
           ],

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hearai/features/home/home.dart';
 import 'package:hearai/features/setting/setting.dart';
 
 import '../network/api_client.dart';
@@ -13,6 +14,7 @@ Future<void> initDependencies() async {
 
   // --- data -----------------------------------------------------------------
   sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(dio: sl()));
+  sl.registerLazySingleton<WordRepository>(() => WordRepositoryImpl(dio: sl()));
 
   // --- features -------------------------------------------------------------
   // sl.registerLazySingleton<SettingController>(

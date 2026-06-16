@@ -44,6 +44,23 @@ class _HomePageState extends ConsumerState<HomePage> {
                       // 用户知晓可以滑动之后，就不用提示了
                       _displayBottomHint = false;
                     });
+
+                    if (index > words.length) {
+                      // 等待Card不做处理
+                      return;
+                    }
+                    WordDtoModel word = words[index - 1];
+                    ref
+                        .read(wordsControllerProvider.notifier)
+                        .report(
+                          word.taskId,
+                          ReportWordDtoModel(
+                            taskWordId: word.id,
+                            failedCount: 0,
+                            thinkingTime: 0,
+                            master: false,
+                          ),
+                        );
                   },
                   physics: _OnlyNextPagePhysics(),
                   scrollDirection: Axis.vertical,
@@ -72,7 +89,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ),
                 ),
                 // 底部提示区
-                if (_displayBottomHint)
+                if (_displayBottomHint && words.isNotEmpty)
                   Positioned(
                     bottom: 20,
                     child: Column(

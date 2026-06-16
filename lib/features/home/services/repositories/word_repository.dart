@@ -21,7 +21,7 @@ class WordRepositoryImpl implements WordRepository {
 
   @override
   Future<void> report(String taskId, ReportWordDtoModel body) async {
-    await dio.patch("/daily-tasks/$taskId/report", data: body.toJson());
+    await dio.post("/daily-tasks/$taskId/report", data: body.toJson());
   }
 
   @override

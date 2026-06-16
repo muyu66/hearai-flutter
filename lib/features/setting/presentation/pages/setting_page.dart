@@ -36,10 +36,10 @@ class _SettingPageState extends ConsumerState<SettingPage> {
 
               // 学习设置
               SectionTitle(
-                title: 'learn',
+                title: '学习设置',
                 children: [
                   SliderTile(
-                    title: 'sayRatio',
+                    title: '每日单词数',
                     value: user.dailyWordCount,
                     divisions: 10,
                     onChanged: (value) {},
@@ -52,18 +52,17 @@ class _SettingPageState extends ConsumerState<SettingPage> {
                     },
                   ),
                   DropdownSelectionTile<int>(
-                    title: 'wordsLevel',
+                    title: '词汇量等级',
                     value: user.wordLevel,
                     items: [
-                      DropdownMenuItem(value: 1, child: Text('wordsLevel1')),
-                      DropdownMenuItem(value: 2, child: Text('wordsLevel2')),
-                      DropdownMenuItem(value: 3, child: Text('wordsLevel3')),
-                      DropdownMenuItem(value: 4, child: Text('wordsLevel4')),
-                      DropdownMenuItem(value: 5, child: Text('wordsLevel5')),
+                      DropdownMenuItem(value: 1, child: Text('单词宝宝')),
+                      DropdownMenuItem(value: 2, child: Text('萌新蛋子')),
+                      DropdownMenuItem(value: 3, child: Text('半熟菜鸟')),
+                      DropdownMenuItem(value: 4, child: Text('老油条')),
+                      DropdownMenuItem(value: 5, child: Text('Wordmon 大师')),
                     ],
                     onChanged: (value) async {
                       if (value == null) return;
-
                       ref
                           .read(userControllerProvider.notifier)
                           .updateProfile(UpdateUserDtoModel(wordLevel: value));
@@ -114,7 +113,7 @@ class _SettingPageState extends ConsumerState<SettingPage> {
           ),
           Icon(Icons.account_circle, size: 72),
           const SizedBox(height: 12),
-          Text(user.nickname),
+          Text(user.nickname, style: context.textTheme.titleLarge),
         ],
       ),
     );

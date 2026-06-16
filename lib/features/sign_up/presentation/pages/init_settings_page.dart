@@ -13,10 +13,11 @@ class InitSettingsPage extends StatefulWidget {
 
 class _InitSettingsPageState extends State<InitSettingsPage> {
   final List<SelectOption<int>> _levels = [
-    SelectOption(label: '萌新', value: 1),
-    SelectOption(label: '半熟菜鸟', value: 2),
-    SelectOption(label: '游刃有余', value: 3),
-    SelectOption(label: 'Wordmon 大师', value: 4),
+    SelectOption(label: '单词宝宝', value: 1),
+    SelectOption(label: '萌新蛋子', value: 2),
+    SelectOption(label: '半熟菜鸟', value: 3),
+    SelectOption(label: '老油条', value: 4),
+    SelectOption(label: 'Wordmon 大师', value: 5),
     SelectOption(label: '做题来评估', value: -1),
   ];
 

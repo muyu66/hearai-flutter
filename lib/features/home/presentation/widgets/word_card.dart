@@ -96,7 +96,7 @@ class _WordCardState extends State<WordCard> {
             children: [
               Text(
                 widget.word.question,
-                style: context.textTheme.headlineMedium,
+                style: AppTextStyles.wordDisplay(context: context),
               ),
             ],
           ),

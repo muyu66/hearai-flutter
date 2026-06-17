@@ -36,7 +36,9 @@ class AnswerCard extends StatelessWidget {
           ),
           color: Colors.white,
         ),
-        child: Align(child: Text(answer, style: context.textTheme.bodyMedium)),
+        child: Align(
+          child: Text(answer, style: AppTextStyles.serifBody(context)),
+        ),
       ),
     );
   }

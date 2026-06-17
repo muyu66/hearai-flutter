@@ -26,4 +26,21 @@ abstract final class AppTextStyles {
       Theme.of(context).textTheme.labelLarge!;
   static TextStyle labelMedium(BuildContext context) =>
       Theme.of(context).textTheme.labelMedium!;
+
+  // --- 英文单词展示（Lora 衬线体）---
+  static TextStyle wordDisplay({
+    required BuildContext context,
+    double? fontSize,
+  }) => Theme.of(context).textTheme.headlineMedium!.copyWith(
+    fontFamily: 'Lora',
+    fontFamilyFallback: const ['NotoSansSC', 'NotoSerifSC'],
+    fontSize: fontSize,
+  );
+
+  // --- 中文正文/阅读（思源宋体）---
+  static TextStyle serifBody(BuildContext context) =>
+      Theme.of(context).textTheme.bodyMedium!.copyWith(
+        fontFamily: 'NotoSerifSC',
+        fontFamilyFallback: const ['NotoSansSC', 'Lora'],
+      );
 }

@@ -30,6 +30,7 @@ Map<String, dynamic> _$WordDtoModelToJson(WordDtoModel instance) =>
     };
 
 const _$QuestionModeEnumMap = {
+  QuestionMode.WORD_TO_TRAN: 'WORD_TO_TRAN',
   QuestionMode.WORD_TO_SOUND: 'WORD_TO_SOUND',
   QuestionMode.SOUND_TO_TRAN: 'SOUND_TO_TRAN',
   QuestionMode.TRAN_TO_WORD: 'TRAN_TO_WORD',

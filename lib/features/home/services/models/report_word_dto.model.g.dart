@@ -11,7 +11,6 @@ ReportWordDtoModel _$ReportWordDtoModelFromJson(Map<String, dynamic> json) =>
       taskWordId: json['taskWordId'] as String,
       failedCount: (json['failedCount'] as num).toInt(),
       thinkingTime: (json['thinkingTime'] as num).toInt(),
-      master: json['master'] as bool,
     );
 
 Map<String, dynamic> _$ReportWordDtoModelToJson(ReportWordDtoModel instance) =>
@@ -19,5 +18,4 @@ Map<String, dynamic> _$ReportWordDtoModelToJson(ReportWordDtoModel instance) =>
       'taskWordId': instance.taskWordId,
       'failedCount': instance.failedCount,
       'thinkingTime': instance.thinkingTime,
-      'master': instance.master,
     };

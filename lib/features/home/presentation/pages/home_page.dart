@@ -13,13 +13,15 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  // 底部文字提示区，当为空字符串时会隐藏底部提示区
+  String _hint = '';
+  // 是否锁住滚动
+  bool _lockScroll = true;
+
   @override
   void initState() {
     super.initState();
   }
-
-  // 是否显示底部提示区
-  bool _displayBottomHint = true;
 
   @override
   Widget build(BuildContext context) {
@@ -41,35 +43,58 @@ class _HomePageState extends ConsumerState<HomePage> {
                 PageView.builder(
                   onPageChanged: (index) {
                     setState(() {
-                      // 用户知晓可以滑动之后，就不用提示了
-                      _displayBottomHint = false;
+                      // 空字符串会隐藏提示区
+                      _hint = '';
+                      // 重新锁定
+                      _lockScroll = true;
                     });
 
-                    if (index > words.length) {
-                      // 等待Card不做处理
-                      return;
-                    }
-                    WordDtoModel word = words[index - 1];
-                    ref
-                        .read(wordsControllerProvider.notifier)
-                        .report(
-                          word.taskId,
-                          ReportWordDtoModel(
-                            taskWordId: word.id,
-                            failedCount: 0,
-                            thinkingTime: 0,
-                            master: false,
-                          ),
-                        );
+                    // WordDtoModel word = words[index - 1];
+                    // ref
+                    //     .read(wordsControllerProvider.notifier)
+                    //     .report(
+                    //       word.taskId,
+                    //       ReportWordDtoModel(
+                    //         taskWordId: word.id,
+                    //         failedCount: 0,
+                    //         thinkingTime: 0,
+                    //         master: false,
+                    //       ),
+                    //     );
                   },
-                  physics: _OnlyNextPagePhysics(),
+                  physics: _lockScroll
+                      ? const NeverScrollableScrollPhysics()
+                      : const _OnlyNextPagePhysics(),
                   scrollDirection: Axis.vertical,
                   itemCount: words.length + 1,
                   itemBuilder: (context, index) {
                     if (index == words.length) {
                       return WaitingCard();
                     }
-                    return WordCard(word: words[index]);
+                    WordDtoModel word = words[index];
+                    return WordCard(
+                      word: word,
+                      onResult: (int thinkingTime, int failedCount) async {
+                        await ref
+                            .read(wordsControllerProvider.notifier)
+                            .report(
+                              word.taskId,
+                              ReportWordDtoModel(
+                                taskWordId: word.id,
+                                failedCount: failedCount,
+                                thinkingTime: thinkingTime,
+                              ),
+                            );
+
+                        setState(() {
+                          _hint = failedCount > 0
+                              ? '别气馁，继续下一个'
+                              : 'Perfect! 让我们继续';
+                          // 解锁滚动
+                          _lockScroll = false;
+                        });
+                      },
+                    );
                   },
                 ),
                 // 顶部按钮区
@@ -81,6 +106,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     children: [
                       IconButton(
                         onPressed: () {
+                          HapticsManager.light();
                           context.push(RoutePaths.setting);
                         },
                         icon: const Icon(Icons.settings),
@@ -89,7 +115,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ),
                 ),
                 // 底部提示区
-                if (_displayBottomHint && words.isNotEmpty)
+                if (_hint != '')
                   Positioned(
                     bottom: 20,
                     child: Column(
@@ -99,7 +125,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           onPressed: () {},
                           icon: const Icon(Icons.arrow_upward),
                         ),
-                        Text('无需记忆这个单词', style: context.textTheme.bodySmall),
+                        Text(_hint, style: context.textTheme.bodySmall),
                       ],
                     ),
                   ),

@@ -1,8 +1,10 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hearai/core/core.dart';
 import 'package:hearai/features/setting/setting.dart';
+import 'package:hearai/shared/shared.dart';
 
 class SettingPage extends ConsumerStatefulWidget {
   const SettingPage({super.key});
@@ -38,17 +40,30 @@ class _SettingPageState extends ConsumerState<SettingPage> {
               SectionTitle(
                 title: '学习设置',
                 children: [
-                  SliderTile(
+                  DropdownSelectionTile<int>(
                     title: '每日单词数',
                     value: user.dailyWordCount,
-                    divisions: 10,
-                    onChanged: (value) {},
-                    onChangeEnd: (value) {
+                    items: [
+                      DropdownMenuItem(value: 5, child: Text('5 个')),
+                      DropdownMenuItem(value: 10, child: Text('10 个')),
+                      DropdownMenuItem(value: 30, child: Text('30 个')),
+                      DropdownMenuItem(value: 50, child: Text('50 个')),
+                      DropdownMenuItem(value: 80, child: Text('80 个')),
+                      DropdownMenuItem(value: 100, child: Text('100 个')),
+                    ],
+                    onChanged: (value) async {
+                      HapticsManager.light();
+                      if (value == null) return;
                       ref
                           .read(userControllerProvider.notifier)
                           .updateProfile(
                             UpdateUserDtoModel(dailyWordCount: value),
                           );
+                      showClassicNotify(
+                        context: context,
+                        title: '明日生效',
+                        dialogType: DialogType.success,
+                      );
                     },
                   ),
                   DropdownSelectionTile<int>(
@@ -62,10 +77,16 @@ class _SettingPageState extends ConsumerState<SettingPage> {
                       DropdownMenuItem(value: 5, child: Text('Wordmon 大师')),
                     ],
                     onChanged: (value) async {
+                      HapticsManager.light();
                       if (value == null) return;
                       ref
                           .read(userControllerProvider.notifier)
                           .updateProfile(UpdateUserDtoModel(wordLevel: value));
+                      showClassicNotify(
+                        context: context,
+                        title: '明日生效',
+                        dialogType: DialogType.success,
+                      );
                     },
                   ),
                 ],

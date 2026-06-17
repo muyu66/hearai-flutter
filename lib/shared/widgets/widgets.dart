@@ -7,3 +7,4 @@ export 'empty_state.dart';
 
 export 'selectable_card.dart';
 export 'app_slider.dart';
+export 'dialog.dart';

@@ -85,18 +85,6 @@ flutter:
         - asset: assets/fonts/noto-sans-sc-chinese-simplified-700-normal.ttf
           weight: 700
 
-    # 中文衬线字体（思源宋体）—— 正文/阅读
-    - family: NotoSerifSC
-      fonts:
-        - asset: assets/fonts/noto-serif-sc-chinese-simplified-400-normal.ttf
-          weight: 400
-        - asset: assets/fonts/noto-serif-sc-chinese-simplified-500-normal.ttf
-          weight: 500
-        - asset: assets/fonts/noto-serif-sc-chinese-simplified-600-normal.ttf
-          weight: 600
-        - asset: assets/fonts/noto-serif-sc-chinese-simplified-700-normal.ttf
-          weight: 700
-
     # 英文衬线字体 —— 单词展示
     - family: Lora
       fonts:

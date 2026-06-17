@@ -36,11 +36,4 @@ abstract final class AppTextStyles {
     fontFamilyFallback: const ['NotoSansSC', 'NotoSerifSC'],
     fontSize: fontSize,
   );
-
-  // --- 中文正文/阅读（思源宋体）---
-  static TextStyle serifBody(BuildContext context) =>
-      Theme.of(context).textTheme.bodyMedium!.copyWith(
-        fontFamily: 'NotoSerifSC',
-        fontFamilyFallback: const ['NotoSansSC', 'Lora'],
-      );
 }

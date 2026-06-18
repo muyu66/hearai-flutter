@@ -11,8 +11,7 @@ WordDtoModel _$WordDtoModelFromJson(Map<String, dynamic> json) => WordDtoModel(
   taskId: json['taskId'] as String,
   questionMode: $enumDecode(_$QuestionModeEnumMap, json['questionMode']),
   question: json['question'] as String,
-  ukPronunciation: json['ukPronunciation'] as String?,
-  usPronunciation: json['usPronunciation'] as String?,
+  pronunciationUrl: json['pronunciationUrl'] as String?,
   answers: (json['answers'] as List<dynamic>).map((e) => e as String).toList(),
   correctAnswerIndex: (json['correctAnswerIndex'] as num).toInt(),
 );
@@ -23,8 +22,7 @@ Map<String, dynamic> _$WordDtoModelToJson(WordDtoModel instance) =>
       'taskId': instance.taskId,
       'questionMode': _$QuestionModeEnumMap[instance.questionMode]!,
       'question': instance.question,
-      'ukPronunciation': instance.ukPronunciation,
-      'usPronunciation': instance.usPronunciation,
+      'pronunciationUrl': instance.pronunciationUrl,
       'answers': instance.answers,
       'correctAnswerIndex': instance.correctAnswerIndex,
     };

@@ -9,8 +9,7 @@ class WordDtoModel {
   final String taskId;
   final QuestionMode questionMode;
   final String question;
-  final String? ukPronunciation;
-  final String? usPronunciation;
+  final String? pronunciationUrl;
   final List<String> answers;
   final int correctAnswerIndex;
 
@@ -19,8 +18,7 @@ class WordDtoModel {
     required this.taskId,
     required this.questionMode,
     required this.question,
-    this.ukPronunciation,
-    this.usPronunciation,
+    this.pronunciationUrl,
     required this.answers,
     required this.correctAnswerIndex,
   });

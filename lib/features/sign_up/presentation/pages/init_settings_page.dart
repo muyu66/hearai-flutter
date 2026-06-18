@@ -20,6 +20,8 @@ class _InitSettingsPageState extends State<InitSettingsPage> {
   int _selectedLevel = 1;
   // 用户的单词数量
   int _selectedWordCount = 10;
+  // 用户选择的音标
+  PronType _selectedPronType = PronType.US;
 
   @override
   void initState() {
@@ -75,6 +77,21 @@ class _InitSettingsPageState extends State<InitSettingsPage> {
                         if (value == null) return;
                         setState(() {
                           _selectedLevel = value;
+                        });
+                      },
+                    ),
+                    DropdownSelectionTile<PronType>(
+                      title: '音标',
+                      value: _selectedPronType,
+                      items: [
+                        DropdownMenuItem(value: PronType.US, child: Text('美式')),
+                        DropdownMenuItem(value: PronType.UK, child: Text('英式')),
+                      ],
+                      onChanged: (value) async {
+                        HapticsManager.light();
+                        if (value == null) return;
+                        setState(() {
+                          _selectedPronType = value;
                         });
                       },
                     ),

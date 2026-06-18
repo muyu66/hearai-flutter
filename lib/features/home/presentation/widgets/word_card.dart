@@ -30,13 +30,27 @@ class _WordCardState extends State<WordCard> {
   void initState() {
     super.initState();
     _thinkingTimer = Timer(const Duration(seconds: 5), () => _toAnswer());
+    playPronunciation();
   }
 
   @override
   void dispose() {
+    AudioManager.instance.stop();
     _stopwatch.stop();
     _thinkingTimer?.cancel();
     super.dispose();
+  }
+
+  void playPronunciation() async {
+    // 需要思考发音的题型，拦截不让播放
+    if (widget.word.questionMode == QuestionMode.WORD_TO_SOUND ||
+        widget.word.questionMode == QuestionMode.TRAN_TO_WORD) {
+      return;
+    }
+
+    if (widget.word.pronunciationUrl != null) {
+      await AudioManager.instance.playUrl(widget.word.pronunciationUrl!);
+    }
   }
 
   WordState _state = WordState.thinking;
@@ -90,20 +104,30 @@ class _WordCardState extends State<WordCard> {
         // 上半部分：单词 (40%)
         Expanded(
           flex: 2,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                widget.word.question,
-                style: AppTextStyles.wordDisplay(context: context),
+          child: Expanded(
+            flex: 2,
+            child: GestureDetector(
+              onTap: playPronunciation,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: double.infinity),
+                  child: Text(
+                    widget.word.question,
+                    softWrap: true,
+                    textAlign: TextAlign.center,
+                    style: widget.word.questionMode == QuestionMode.TRAN_TO_WORD
+                        ? context.textTheme.bodyLarge
+                        : AppTextStyles.wordDisplay(context: context),
+                  ),
+                ),
               ),
-            ],
+            ),
           ),
         ),
         // 下半部分：状态内容 (60%)
         Expanded(
-          flex: 7,
+          flex: 3,
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 400),
             switchInCurve: Curves.easeIn,
@@ -118,6 +142,7 @@ class _WordCardState extends State<WordCard> {
             ),
           ),
         ),
+        Expanded(flex: 1, child: const SizedBox.shrink()),
       ],
     );
   }

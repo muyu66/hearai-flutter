@@ -89,6 +89,26 @@ class _SettingPageState extends ConsumerState<SettingPage> {
                       );
                     },
                   ),
+                  DropdownSelectionTile<PronType>(
+                    title: '音标',
+                    value: user.pronType,
+                    items: [
+                      DropdownMenuItem(value: PronType.US, child: Text('美式')),
+                      DropdownMenuItem(value: PronType.UK, child: Text('英式')),
+                    ],
+                    onChanged: (value) async {
+                      HapticsManager.light();
+                      if (value == null) return;
+                      ref
+                          .read(userControllerProvider.notifier)
+                          .updateProfile(UpdateUserDtoModel(pronType: value));
+                      showClassicNotify(
+                        context: context,
+                        title: '重启应用后生效',
+                        dialogType: DialogType.success,
+                      );
+                    },
+                  ),
                   ClickableTile(
                     title: '隐私政策',
                     subtitle: '点击查看隐私政策',

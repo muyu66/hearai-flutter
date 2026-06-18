@@ -10,7 +10,11 @@ Dio createApiClient() {
       baseUrl: api_const.ApiConstants.baseUrl,
       connectTimeout: api_const.ApiConstants.connectTimeout,
       receiveTimeout: api_const.ApiConstants.receiveTimeout,
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwibmlja25hbWUiOiJhYWFhIiwiaXNXZWNoYXRVc2VyIjp0cnVlLCJpc0dvb2dsZVVzZXIiOmZhbHNlfQ.iIY36f8ftgh9lOPtz9MqCkxhJwqCtkNyAzhOVSjEjqM',
+      },
     ),
   );
 

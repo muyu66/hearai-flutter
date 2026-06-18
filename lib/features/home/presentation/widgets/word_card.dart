@@ -89,7 +89,7 @@ class _WordCardState extends State<WordCard> {
       children: [
         // 上半部分：单词 (40%)
         Expanded(
-          flex: 3,
+          flex: 2,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,

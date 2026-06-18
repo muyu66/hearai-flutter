@@ -86,8 +86,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ),
                 // 顶部按钮区
                 Positioned(
-                  top: 20,
-                  right: 20,
+                  top: 4,
+                  right: 10,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

@@ -49,7 +49,7 @@ class _WordCardState extends State<WordCard> {
     }
 
     if (widget.word.pronunciationUrl != null) {
-      await AudioManager.instance.playUrl(widget.word.pronunciationUrl!);
+      AudioManager.instance.playUrl(widget.word.pronunciationUrl!);
     }
   }
 

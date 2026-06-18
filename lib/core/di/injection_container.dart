@@ -11,8 +11,11 @@ final GetIt sl = GetIt.instance;
 
 Future<void> initDependencies() async {
   // --- core (infrastructure) ------------------------------------------------
-  sl.registerLazySingleton<Dio>(() => createApiClient());
   sl.registerLazySingleton<AuthController>(() => AuthController());
+
+  sl.registerLazySingleton<Dio>(
+    () => createApiClient(getToken: () => sl<AuthController>().accessToken),
+  );
 
   // --- data -----------------------------------------------------------------
   sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(dio: sl()));

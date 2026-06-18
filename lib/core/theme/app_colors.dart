@@ -1,6 +1,6 @@
 abstract final class AppColors {
   // --- Primary ---
-  static const int primarySeed = 0xFF6750A4; // Material 3 default purple
+  static const int primarySeed = 0xFFFFFFFF; // Material 3 default purple
 
   // --- Semantic ---
   static const int success = 0xFF4CAF50;

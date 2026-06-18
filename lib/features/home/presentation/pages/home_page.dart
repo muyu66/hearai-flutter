@@ -125,7 +125,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 }
 
-/// 只允许下一个页面滑动
+/// 只允许滑到下一页，禁止回退到上一页。
 class _OnlyNextPagePhysics extends ScrollPhysics {
   const _OnlyNextPagePhysics({super.parent});
 
@@ -136,9 +136,14 @@ class _OnlyNextPagePhysics extends ScrollPhysics {
 
   @override
   double applyBoundaryConditions(ScrollMetrics position, double value) {
-    // 禁止回滑
-    if (value < position.pixels) {
-      return value - position.pixels;
+    final vp = position.viewportDimension;
+    if (vp <= 0) return super.applyBoundaryConditions(position, value);
+
+    // 页面起始位置 — 只在你滑到新页面后才更新，是固定边界
+    final pageStart = (position.pixels ~/ vp).toDouble() * vp;
+
+    if (value < pageStart) {
+      return value - pageStart;
     }
 
     return super.applyBoundaryConditions(position, value);

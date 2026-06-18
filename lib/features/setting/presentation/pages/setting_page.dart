@@ -53,7 +53,7 @@ class _SettingPageState extends ConsumerState<SettingPage> {
                     ],
                     onChanged: (value) async {
                       HapticsManager.light();
-                      if (value == null) return;
+                      if (value == null || value == user.dailyWordCount) return;
                       ref
                           .read(userControllerProvider.notifier)
                           .updateProfile(
@@ -78,7 +78,7 @@ class _SettingPageState extends ConsumerState<SettingPage> {
                     ],
                     onChanged: (value) async {
                       HapticsManager.light();
-                      if (value == null) return;
+                      if (value == null || value == user.wordLevel) return;
                       ref
                           .read(userControllerProvider.notifier)
                           .updateProfile(UpdateUserDtoModel(wordLevel: value));
@@ -98,7 +98,7 @@ class _SettingPageState extends ConsumerState<SettingPage> {
                     ],
                     onChanged: (value) async {
                       HapticsManager.light();
-                      if (value == null) return;
+                      if (value == null || value == user.pronType) return;
                       ref
                           .read(userControllerProvider.notifier)
                           .updateProfile(UpdateUserDtoModel(pronType: value));

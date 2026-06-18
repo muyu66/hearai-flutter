@@ -48,7 +48,9 @@ class _SignUpPageState extends State<SignUpPage> {
       if (mounted) {
         setState(() => _isWechatLoading = false);
       }
-      debugPrint('SignUpPage: _onWechatAuthResponse: $response');
+      debugPrint(
+        'SignUpPage Exception: errCode:${response.errCode}, errStr:${response.errStr}',
+      );
     }
   }
 

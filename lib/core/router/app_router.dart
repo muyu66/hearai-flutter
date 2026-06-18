@@ -1,19 +1,18 @@
 import 'package:go_router/go_router.dart';
+import 'package:hearai/core/di/injection_container.dart';
 import 'package:hearai/features/home/home.dart';
 import 'package:hearai/features/sign_up/sign_up.dart';
-import 'package:hearai/features/splash/splash.dart';
 import 'package:hearai/features/setting/setting.dart';
 
+import '../auth/auth_controller.dart';
+import 'route_guards.dart';
 import 'route_paths.dart';
 
-final GoRouter appRouter = GoRouter(
-  initialLocation: RoutePaths.splash,
+GoRouter get appRouter => GoRouter(
+  redirect: routeGuard,
+  refreshListenable: sl<AuthController>(),
+  initialLocation: RoutePaths.signUp,
   routes: [
-    GoRoute(
-      path: RoutePaths.splash,
-      name: 'splash',
-      builder: (context, state) => const SplashPage(),
-    ),
     GoRoute(
       path: RoutePaths.home,
       name: 'home',

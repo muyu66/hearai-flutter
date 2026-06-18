@@ -22,7 +22,7 @@ class GoogleLoginBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: AppDimensions.buttonHeight,
-      width: 180,
+      width: 200,
       child: FilledButton.icon(
         onPressed: isLoading ? null : onPressed,
         style: FilledButton.styleFrom(
@@ -41,7 +41,7 @@ class GoogleLoginBtn extends StatelessWidget {
             : const FaIcon(
                 FontAwesomeIcons.google,
                 color: Colors.white,
-                size: 20,
+                size: 16,
               ),
         label: Text(
           'Google 登录',

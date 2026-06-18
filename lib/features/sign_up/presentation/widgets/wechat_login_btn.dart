@@ -21,7 +21,7 @@ class WechatLoginBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: AppDimensions.buttonHeight,
-      width: 180,
+      width: 200,
       child: FilledButton.icon(
         onPressed: isLoading ? null : onPressed,
         style: FilledButton.styleFrom(
@@ -40,7 +40,7 @@ class WechatLoginBtn extends StatelessWidget {
                   color: Colors.white,
                 ),
               )
-            : const Icon(Icons.wechat, color: Colors.white, size: 20),
+            : const Icon(Icons.wechat, color: Colors.white, size: 24),
         label: Text(
           '微信登录',
           style: AppTextStyles.labelLarge(

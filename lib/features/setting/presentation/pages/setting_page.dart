@@ -89,6 +89,14 @@ class _SettingPageState extends ConsumerState<SettingPage> {
                       );
                     },
                   ),
+                  ClickableTile(
+                    title: '隐私政策',
+                    subtitle: '点击查看隐私政策',
+                    icon: Icons.privacy_tip,
+                    onTap: () {
+                      HapticsManager.light();
+                    },
+                  ),
                 ],
               ),
 

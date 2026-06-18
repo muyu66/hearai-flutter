@@ -18,8 +18,6 @@ class DropdownSelectionTile<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = Theme.of(context).textTheme;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
@@ -27,7 +25,7 @@ class DropdownSelectionTile<T> extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [Text(title)],
+              children: [Text(title, style: context.textTheme.bodyMedium)],
             ),
           ),
           const SizedBox(width: 8),
@@ -46,7 +44,7 @@ class DropdownSelectionTile<T> extends StatelessWidget {
               icon: const Icon(Icons.arrow_drop_down, size: 24),
               elevation: 2,
               borderRadius: BorderRadius.circular(8),
-              style: t.bodyMedium,
+              style: context.textTheme.bodyMedium,
             ),
           ),
         ],

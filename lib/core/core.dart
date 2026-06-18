@@ -6,3 +6,4 @@ export 'errors/errors.dart';
 export 'di/di.dart';
 export 'utils/utils.dart';
 export 'extensions/extensions.dart';
+export 'auth/auth.dart';

@@ -1,4 +1,4 @@
-package com.example.hearai
+package com.zhuzhu66.hearai
 
 import io.flutter.embedding.android.FlutterActivity
 

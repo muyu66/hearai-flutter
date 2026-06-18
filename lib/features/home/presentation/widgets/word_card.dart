@@ -127,13 +127,26 @@ class _WordCardState extends State<WordCard> {
       case WordState.thinking:
         switch (widget.word.questionMode) {
           case QuestionMode.TRAN_TO_WORD:
-            return Text('拼写？', style: context.textTheme.titleMedium);
+            // 点击提示词可以快速进入下一阶段
+            return InkWell(
+              onTap: () => _toAnswer(),
+              child: Text('拼写？', style: context.textTheme.titleLarge),
+            );
           case QuestionMode.WORD_TO_SOUND:
-            return Text('发音？', style: context.textTheme.titleMedium);
+            return InkWell(
+              onTap: () => _toAnswer(),
+              child: Text('发音？', style: context.textTheme.titleLarge),
+            );
           case QuestionMode.SOUND_TO_TRAN:
-            return Text('中文释义？', style: context.textTheme.titleMedium);
+            return InkWell(
+              onTap: () => _toAnswer(),
+              child: Text('中文释义？', style: context.textTheme.titleLarge),
+            );
           case QuestionMode.WORD_TO_TRAN:
-            return Text('中文释义？', style: context.textTheme.titleMedium);
+            return InkWell(
+              onTap: () => _toAnswer(),
+              child: Text('中文释义？', style: context.textTheme.titleLarge),
+            );
         }
 
       case WordState.answer:

@@ -48,19 +48,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                       // 重新锁定
                       _lockScroll = true;
                     });
-
-                    // WordDtoModel word = words[index - 1];
-                    // ref
-                    //     .read(wordsControllerProvider.notifier)
-                    //     .report(
-                    //       word.taskId,
-                    //       ReportWordDtoModel(
-                    //         taskWordId: word.id,
-                    //         failedCount: 0,
-                    //         thinkingTime: 0,
-                    //         master: false,
-                    //       ),
-                    //     );
                   },
                   physics: _lockScroll
                       ? const NeverScrollableScrollPhysics()
